@@ -34,12 +34,12 @@ $(document).on("click", "#btnSave", function(event) {
 
 function onPaymentSaveComplete(response, status) {
 	if (status == "success") {
-		var resultSet = JSON.parse(response);
-		if (resultSet.status.trim() == "success") {
+		var resultSet = response;
+		if (resultSet.status == "success") {
 			$("#alertSuccess").text("Successfully saved.");
 			$("#alertSuccess").show();
 			$("#divItemsGrid").html(resultSet.data);
-		} else if (resultSet.status.trim() == "error") {
+		} else if (resultSet.status == "error") {
 			$("#alertError").text(resultSet.data);
 			$("#alertError").show();
 		}
@@ -99,20 +99,19 @@ $(document).on("click", ".btnRemove", function(event) {
 		data : "paymentID=" + $(this).data("paymentID"),
 		dataType : "text",
 		complete : function(response, status) {
-			onItemDeleteComplete(response.responseText, status);
+			onPaymentDeleteComplete(response.responseText, status);
 		}
 	});
 });
 
-function onItemDeleteComplete(response, status) {
-	console.log(response)
+function onPaymentDeleteComplete(response, status) {
 	if (status == "success") {
-		var resultSet = JSON.parse(response);
-		if (resultSet.status.trim() == "success") {
+		var resultSet = response;
+		if (resultSet.status == "success") {
 			$("#alertSuccess").text("Successfully deleted.");
 			$("#alertSuccess").show();
 			$("#divItemsGrid").html(resultSet.data);
-		} else if (resultSet.status.trim() == "error") {
+		} else if (resultSet.status == "error") {
 			$("#alertError").text(resultSet.data);
 			$("#alertError").show();
 		}

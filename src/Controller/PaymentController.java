@@ -52,9 +52,7 @@ public class PaymentController {
 			}
 			preparedStmt.execute();
 			con.close();
-			output = "Inserted successfully";
 		} catch (Exception e) {
-			output = "Error inserting the item.";
 			System.err.println(e.getMessage());
 		}
 		return output;
@@ -95,7 +93,7 @@ public class PaymentController {
 				output += "<td>" + pharmacylID + "</td>";
 				output += "<td>" + patientID + "</td>";
 				   output += "<td><input name='btnUpdate' type='button' value='Update'class='btnUpdate btn btn-secondary'></td>"
-	                        + "<td><input name='btnRemove' type='button' value='Remove'class='btnRemove btn btn-danger' data-itemid='"
+	                        + "<td><input name='btnRemove' type='button' value='Remove'class='btnRemove btn btn-danger' data-paymentID='"
 	                        + paymentID + "'>" + "</td></tr>";
 				}
 			con.close();
@@ -159,8 +157,7 @@ public class PaymentController {
 		return output;
 	}
 
-	public String deletePayment(String PaymentID) {
-		System.out.println(PaymentID);
+	public String deletePayment(String paymentID) {
 		String output = "";
 		try {
 			Connection con = connect();
@@ -171,7 +168,7 @@ public class PaymentController {
 			String query = "delete from payments where PaymentID=?";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 // binding values
-			preparedStmt.setString(1, PaymentID);
+			preparedStmt.setString(1, paymentID);
 // execute the statement
 			preparedStmt.execute();
 			con.close();

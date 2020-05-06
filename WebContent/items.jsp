@@ -19,7 +19,7 @@
 				<h1 class="m-3">Payment details</h1>
 				<form id="formPayment" name="formPayment" method="post"
 					action="items.jsp">
-					Payment ID <input id="paymentID" name="paymentID" type="text"
+					 <input id="paymentID" name="paymentID" type="hidden"
 						class="form-control form-control-sm"> <br>
 					Payment Type <input id="type" name="type" type="text"
 						class="form-control form-control-sm"> <br> Amount <input
@@ -27,6 +27,7 @@
 						class="form-control form-control-sm"> <br> Payment
 					for? <select id="paymentHolder" name="paymentHolder" type="text"
 						class="form-control form-control-sm">
+						<option value=null>--select--</option>
 						<option value="Doctor">Doctor</option>
 						<option value="Hospital">Hospital</option>
 						<option value="Pharmacy">Pharmacy</option>
