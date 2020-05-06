@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" href="Views/bootstrap.min.css">
 <script src="Components/jquery-3.5.0.min.js"></script>
-<script src="Components/items.js"></script>
+<script src="Components/payment.js"></script>
 </head>
 <body>
 	<div class="container">
