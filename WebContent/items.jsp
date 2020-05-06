@@ -21,8 +21,14 @@
 					action="items.jsp">
 					 <input id="paymentID" name="paymentID" type="hidden"
 						class="form-control form-control-sm"> <br>
-					Payment Type <input id="type" name="type" type="text"
-						class="form-control form-control-sm"> <br> Amount <input
+					Payment Type 
+					<select id="type" name="type" type="text"
+						class="form-control form-control-sm">
+						<option value=null>--select--</option>
+						<option value="Doctor">Cash</option>
+						<option value="Hospital">Card</option>
+						<option value="Pharmacy">Cheque</option>
+					</select><br> Amount <input
 						id="ammount" name="ammount" type="text"
 						class="form-control form-control-sm"> <br> Payment
 					for? <select id="paymentHolder" name="paymentHolder" type="text"

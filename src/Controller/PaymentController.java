@@ -93,7 +93,7 @@ public class PaymentController {
 				output += "<td>" + pharmacylID + "</td>";
 				output += "<td>" + patientID + "</td>";
 				   output += "<td><input name='btnUpdate' type='button' value='Update'class='btnUpdate btn btn-secondary'></td>"
-	                        + "<td><input name='btnRemove' type='button' value='Remove'class='btnRemove btn btn-danger' data-paymentID='"
+	                        + "<td><input name='btnRemove' type='button' value='Remove'class='btnRemove btn btn-danger' data-paymentId='"
 	                        + paymentID + "'>" + "</td></tr>";
 				}
 			con.close();
