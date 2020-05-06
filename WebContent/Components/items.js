@@ -96,7 +96,7 @@ $(document).on("click", ".btnRemove", function(event) {
 	$.ajax({
 		url : "PaymentAPI",
 		type : "DELETE",
-		data : "PaymentID=" + $(this).data("PaymentID"),
+		data : "paymentID=" + $(this).data("paymentID"),
 		dataType : "text",
 		complete : function(response, status) {
 			onItemDeleteComplete(response.responseText, status);
@@ -105,6 +105,7 @@ $(document).on("click", ".btnRemove", function(event) {
 });
 
 function onItemDeleteComplete(response, status) {
+	console.log(response)
 	if (status == "success") {
 		var resultSet = JSON.parse(response);
 		if (resultSet.status.trim() == "success") {
