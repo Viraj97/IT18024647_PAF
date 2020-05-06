@@ -68,7 +68,7 @@ public class PaymentController {
 				return "Error while connecting to the database.";
 			}
 
-			output = "<table border=\"1\"><tr><th>Payment ID</th><th>Type</th><th>Ammount</th><th>Payment Holder</th><th>Date</th><th>HospitalID</th><th>DoctorID</th><th>PharmacyID</th><th>PatientID</th></tr>";
+			output = "<table border=\"1\"><tr><th>Payment ID</th><th>Type</th><th>Ammount</th><th>Payment Holder</th><th>Date</th><th>HospitalID</th><th>DoctorID</th><th>PharmacyID</th><th>PatientID</th><th>Update</th><th>Delete</th></tr>";
 			String query = "select * from payments";
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
@@ -93,6 +93,9 @@ public class PaymentController {
 				output += "<td>" + doctorID + "</td>";
 				output += "<td>" + pharmacylID + "</td>";
 				output += "<td>" + patientID + "</td>";
+				   output += "<td><input name='btnUpdate' type='button' value='Update'class='btnUpdate btn btn-secondary'></td>"
+	                        + "<td><input name='btnRemove'type='button' value='Remove'class='btnRemove btn btn-danger' data-itemid='"
+	                        + paymentID + "'>" + "</td></tr>";
 				}
 			con.close();
 
