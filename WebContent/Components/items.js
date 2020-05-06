@@ -1,9 +1,8 @@
-$(document).ready(function()
-{
-    $("#alertSuccess").hide();
-    $("#alertError").hide();
+$(document).ready(function() {
+	$("#alertSuccess").hide();
+	$("#alertError").hide();
 });
-// SAVE ============================================
+// SAVE
 $(document).on("click", "#btnSave", function(event) {
 	// Clear alerts---------------------
 	$("#alertSuccess").text("");
@@ -17,12 +16,12 @@ $(document).on("click", "#btnSave", function(event) {
 		$("#alertError").show();
 		return;
 	}
-// If valid------------------------
-	
+	// If valid------------------------
+
 	var type = ($("#hidPaymentIDSave").val() == "") ? "POST" : "PUT";
 
 	$.ajax({
-		url : "ItemsAPI",
+		url : "PaymentAPI",
 		type : type,
 		data : $("#formPayment").serialize(),
 		dataType : "text",
@@ -60,20 +59,42 @@ $(document).on(
 		"click",
 		".btnUpdate",
 		function(event) {
+
+			var payeeID = getPayeeId($(this).closest("tr").find('td:eq(5)')
+					.text(), $(this).closest("tr").find('td:eq(6)').text(), $(
+					this).closest("tr").find('td:eq(7)').text(), $(this)
+					.closest("tr").find('td:eq(8)').text())
+
 			$("#hidPaymentIDSave").val(
 					$(this).closest("tr").find('#hidPaymentIDUpdate').val());
+			$("#paymentID").val($(this).closest("tr").find('td:eq(0)').text());
 			$("#type").val($(this).closest("tr").find('td:eq(1)').text());
 			$("#ammount").val($(this).closest("tr").find('td:eq(2)').text());
-			$("#paymentHolder").val($(this).closest("tr").find('td:eq(3)').text());
+			$("#paymentHolder").val(
+					$(this).closest("tr").find('td:eq(3)').text());
 			$("#date").val($(this).closest("tr").find('td:eq(4)').text());
-			$("#payeeId").val($(this).closest("tr").find('td:eq(5)').text());
+			$("#payeeId").val(payeeID);
 		});
 
+function getPayeeId(hospital, doctor, pharmacy, patient) {
+	if (hospital != 'null') {
+		return hospital;
+	}
+	if (doctor != 'null') {
+		return doctor;
+	}
+	if (pharmacy != 'null') {
+		return pharmacy;
+	}
+	if (patient != 'null') {
+		return patient;
+	}
+}
 
-//remove
+// remove
 $(document).on("click", ".btnRemove", function(event) {
 	$.ajax({
-		url : "ItemsAPI",
+		url : "PaymentAPI",
 		type : "DELETE",
 		data : "PaymentID=" + $(this).data("PaymentID"),
 		dataType : "text",
@@ -82,7 +103,6 @@ $(document).on("click", ".btnRemove", function(event) {
 		}
 	});
 });
-
 
 function onItemDeleteComplete(response, status) {
 	if (status == "success") {

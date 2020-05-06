@@ -84,7 +84,8 @@ public class PaymentController {
 				String pharmacylID = rs.getString("PharmacyID");
 				String patientID = rs.getString("PatientID");
 
-				output += "<tr><td>" + paymentID + "</td>";
+				output += "<tr><td><input id='hidPaymentIDUpdate' name='hidPaymentIDUpdate' type='hidden' value='" + paymentID
+						+ "'>" + paymentID + "</td>";
 				output += "<td>" + type + "</td>";
 				output += "<td>" + ammount + "</td>";
 				output += "<td>" + paymentHolder + "</td>";

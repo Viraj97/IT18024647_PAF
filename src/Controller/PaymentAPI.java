@@ -15,17 +15,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ItemsAPI
+ * Servlet implementation class PaymentAPI
  */
-@WebServlet("/ItemsAPI")
-public class ItemsAPI extends HttpServlet {
+@WebServlet("/PaymentAPI")
+public class PaymentAPI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	PaymentController itemObj = new PaymentController();
+	PaymentController paymentObj = new PaymentController();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ItemsAPI() {
+	public PaymentAPI() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -49,7 +49,7 @@ public class ItemsAPI extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String output = itemObj.makePayment(request.getParameter("type"),request.getParameter("ammount"), request.getParameter("paymentHolder"), request.getParameter("payeeId"), request.getParameter("date"));
+		String output = paymentObj.makePayment(request.getParameter("type"),request.getParameter("ammount"), request.getParameter("paymentHolder"), request.getParameter("payeeId"), request.getParameter("date"));
 		response.getWriter().write(output);
 	}
 
@@ -77,7 +77,14 @@ public class ItemsAPI extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Map paras = getParasMap(request);
-		String output = itemObj.updatePayment(paras.get("PaymentID").hashCode(), paras.get("type").toString(), paras.get("ammount").toString(), paras.get("paymentHolder").toString(), paras.get("date").toString(), paras.get("payeeId").toString());
+		String output = paymentObj.updatePayment(
+				Integer.parseInt(paras.get("paymentID").toString()), 
+				paras.get("type").toString(), 
+				paras.get("ammount").toString(), 
+				paras.get("paymentHolder").toString(), 
+				paras.get("date").toString(), 
+				paras.get("payeeId").toString()
+				);
 		response.getWriter().write(output);
 	}
 
@@ -88,7 +95,7 @@ public class ItemsAPI extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Map paras = getParasMap(request);
-		String output = itemObj.deletePayment(paras.get("PaymentID").toString());
+		String output = paymentObj.deletePayment(paras.get("PaymentID").toString());
 		response.getWriter().write(output);
 	}
 

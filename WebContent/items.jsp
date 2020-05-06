@@ -19,6 +19,8 @@
 				<h1 class="m-3">Payment details</h1>
 				<form id="formPayment" name="formPayment" method="post"
 					action="items.jsp">
+					Payment ID <input id="paymentID" name="paymentID" type="text"
+						class="form-control form-control-sm"> <br>
 					Payment Type <input id="type" name="type" type="text"
 						class="form-control form-control-sm"> <br> Amount <input
 						id="ammount" name="ammount" type="text"
